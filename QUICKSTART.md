@@ -9,11 +9,16 @@
    pip install -r requirements.txt
    ```
 
-3. **Generate Data Files**:
-   ```bash
-   python create_data_csvs.py
-   ```
-   This creates realistic CSV data files in the `data/` directory.
+3. **Data Files** (Optional - auto-generated on first run):
+   - The app will automatically generate data files on first launch
+   - To manually generate them:
+     ```bash
+     python create_data_csvs.py
+     ```
+   - This creates realistic CSV data files in the `data/` directory:
+     - Includes mortality data by smoking status
+     - Premium per ₹1 lakh sum insured
+     - Demographic distribution with sum insured amounts
 
 4. **Set Up Groq API Key**:
    - Get your API key from: https://console.groq.com/
@@ -30,7 +35,15 @@
 
 6. **Access the Dashboard**:
    - Open your browser to: http://localhost:8501
+   - Data will be auto-generated on first run (if not already present)
    - Start exploring!
+
+## Key Features to Try
+
+- **Filters**: Try filtering by smoking status (Smoker/Non-Smoker) and sum insured (₹10L to ₹2Cr)
+- **Chat Interface**: Click the chat icon (bottom-right) and try: "forecast for males age 30 years with sum insured 1cr, policy type whole life with non smoker"
+- **Sum Insured**: Select different coverage amounts to see how premiums change
+- **AI Insights**: View AI-generated insights that include context about your selected filters
 
 ## Troubleshooting
 

@@ -19,6 +19,8 @@ As an AI Engineer, Actuarial Data Scientist, and Insurance Pricing Analyst, I've
 - ✅ Age (20-80, with filtering)
 - ✅ Group (Individual, Family, Corporate)
 - ✅ Gender (Male, Female)
+- ✅ Smoking Status (Smoker, Non-Smoker) - **NEWLY ADDED**
+- ✅ Sum Insured (₹10L, ₹25L, ₹50L, ₹1Cr, ₹2Cr, or All) - **NEWLY ADDED**
 - ✅ Country (India - fixed)
 
 #### Longevity Metrics
@@ -33,8 +35,11 @@ As an AI Engineer, Actuarial Data Scientist, and Insurance Pricing Analyst, I've
 - ✅ GDP Growth - **NEWLY ADDED** - now impacts premium calculation
 
 #### Insurance Metrics
-- ✅ Base Premium - varies by age, gender, group, policy type
+- ✅ Premium per Unit - Premium per ₹1 lakh sum insured (varies by age, gender, group, policy type, smoking status)
+- ✅ Sum Insured - Coverage amount selection (₹10L to ₹2Cr)
+- ✅ Total Premium - Calculated as Premium per Unit × (Sum Insured / 100000)
 - ✅ Policy Type - Term Life and Whole Life differentiated
+- ✅ Smoking Status Impact - Smokers pay 2.5-3x more, have 2.5x higher mortality
 
 ## 🔧 Critical Enhancements Made
 
@@ -120,26 +125,34 @@ This properly models the actuarial reality that:
 ## 🎯 All Requirements Met
 
 ### Premium Calculation Factors:
-1. ✅ **Mortality Risk**: Higher mortality → Higher premium
-2. ✅ **Age Multiplier**: Exponential increase with age
-3. ✅ **Gender Adjustment**: Higher for males
-4. ✅ **Group Adjustment**: Corporate (0.85x), Family (0.95x), Individual (1.0x)
-5. ✅ **Economic Factors**:
+1. ✅ **Base Premium per Unit**: Premium per ₹1 lakh sum insured
+   - Varies by age, gender, policy type, smoking status, and group
+2. ✅ **Sum Insured**: Total coverage amount (₹10L to ₹2Cr)
+   - Total Premium = Premium per Unit × (Sum Insured / 100000)
+3. ✅ **Mortality Risk**: Higher mortality → Higher premium
+   - Smokers have 2.5x higher mortality rates
+4. ✅ **Age Multiplier**: Exponential increase with age
+5. ✅ **Gender Adjustment**: Higher for males (1.2x)
+6. ✅ **Smoking Status**: Smokers pay 2.5-3x more (NEW)
+7. ✅ **Group Adjustment**: Corporate (0.80x), Family (0.92x), Individual (1.0x)
+8. ✅ **Economic Factors**:
    - ✅ Inflation: Compounding effect
    - ✅ Interest Rates: Present value and investment income effects
-   - ✅ **GDP Growth**: Economic stability correlation (NEW)
-6. ✅ **Longevity**: 
+   - ✅ **GDP Growth**: Economic stability correlation
+9. ✅ **Longevity**: 
    - ✅ Term Life: Reduces premium (lower annual risk)
-   - ✅ Whole Life: Increases premium (longer exposure) (NEW)
+   - ✅ Whole Life: Increases premium (longer exposure)
 
 ### Dashboard Features:
-1. ✅ Overview metrics
-2. ✅ Premium forecast charts
+1. ✅ Overview metrics (with premium per unit and sum insured info)
+2. ✅ Premium forecast charts (showing total premium for selected sum insured)
 3. ✅ Scenario comparison
-4. ✅ Economic indicators (Inflation, Interest, **GDP**)
-5. ✅ **Mortality & Longevity trends** (NEW)
-6. ✅ Demographic filtering
-7. ✅ AI-powered insights
+4. ✅ Economic indicators (Inflation, Interest, GDP, Premium vs Interest)
+5. ✅ **Mortality & Longevity trends** (by scenario)
+6. ✅ Demographic filtering (including smoking status and sum insured)
+7. ✅ AI-powered insights (with filter context)
+8. ✅ **Chat interface** (natural language queries) (NEW)
+9. ✅ **Comprehensive data tables** (downloadable CSV) (NEW)
 
 ## 📈 Actuarial Validation
 

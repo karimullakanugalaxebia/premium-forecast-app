@@ -17,15 +17,17 @@ Build an AI-powered dashboard that forecasts average life insurance premiums ove
 
 #### Demographic Data
 - **Age**: Policyholder age groups (e.g., 20-30, 31-40, 41-50, 51-60, 61-70, 71+)
-- **Gender**: Male, Female, Other
+- **Gender**: Male, Female
 - **Group**: Individual, Family, Corporate
-- **Country**: Geographic location (with country-specific mortality tables and economic data)
+- **Smoking Status**: Smoker, Non-Smoker (affects mortality rates and premiums)
+- **Country**: India (fixed - with India-specific mortality tables and economic data)
 
 #### Longevity Metrics
-- **Life Expectancy**: Average remaining years of life (by age, gender, country)
-- **Mortality Rate**: Deaths per 1000 population (by age, gender, country)
+- **Life Expectancy**: Average remaining years of life (by age, gender, smoking status, country)
+- **Mortality Rate**: Deaths per 1000 population (by age, gender, smoking status, country)
 - **Longevity Trends**: Historical and projected improvements in life expectancy
 - **Mortality Improvements**: Annual percentage change in mortality rates
+- **Smoking Impact**: Smokers have 2.5x higher mortality rates and 8-12 years lower life expectancy
 
 #### Economic Indicators
 - **Inflation Rate**: Consumer Price Index (CPI) growth rate (% per year)
@@ -34,11 +36,18 @@ Build an AI-powered dashboard that forecasts average life insurance premiums ove
 - **Economic Scenarios**: Base case, optimistic, pessimistic
 
 #### Insurance Metrics
-- **Base Premium**: Starting premium for policy (varies by age, gender, policy type)
+- **Premium per Unit**: Premium per ₹1 lakh sum insured (varies by age, gender, policy type, smoking status, group)
+- **Sum Insured**: Coverage amount (₹10L, ₹25L, ₹50L, ₹1Cr, ₹2Cr, or aggregate)
+- **Total Premium**: `Total Premium = Premium per Unit × (Sum Insured / 100000)`
 - **Policy Type**: 
   - Term Life Insurance (fixed term, e.g., 10, 20, 30 years)
   - Whole Life Insurance (lifetime coverage)
-- **Premium Factors**: Age-based multipliers, gender-based adjustments, policy type multipliers
+- **Premium Factors**: 
+  - Age-based multipliers (exponential increase)
+  - Gender-based adjustments (males pay ~20% more)
+  - Smoking status multipliers (smokers pay 2.5-3x more)
+  - Group multipliers (Corporate: 0.80x, Family: 0.92x, Individual: 1.0x)
+  - Policy type multipliers (Whole Life: ~4x Term Life base rate)
 
 ### 2. Key Relationships & Logic
 
@@ -47,8 +56,9 @@ Build an AI-powered dashboard that forecasts average life insurance premiums ove
 1. **Mortality Risk Component**
    - Higher mortality rate → Higher premium
    - Age multiplier: Premium increases exponentially with age
-   - Gender multiplier: Typically higher for males (higher mortality)
-   - Country multiplier: Based on country-specific mortality tables
+   - Gender multiplier: Typically higher for males (higher mortality) - 1.2x
+   - Smoking status multiplier: Smokers pay 2.5-3x more (2.5x higher mortality)
+   - Country multiplier: Based on country-specific mortality tables (India-specific)
 
 2. **Longevity Component**
    - Increasing life expectancy → Longer policy exposure → Higher cumulative risk
@@ -80,9 +90,12 @@ Build an AI-powered dashboard that forecasts average life insurance premiums ove
    - Create scenarios: base case, optimistic (lower inflation, stable rates), pessimistic (high inflation, volatile rates)
 
 3. **Premium Calculation**
-   - Base premium formula: `Premium = Base × Age_Multiplier × Gender_Multiplier × Country_Multiplier × Policy_Type_Multiplier`
+   - Base premium per unit formula: `Premium_per_Unit = Base_Rate × Age_Multiplier × Gender_Multiplier × Smoking_Status_Multiplier × Group_Multiplier × Policy_Type_Multiplier`
+   - Total Premium: `Total_Premium = Premium_per_Unit × (Sum_Insured / 100000)`
    - Adjust for projected mortality rates
-   - Apply economic adjustments: `Adjusted_Premium = Premium × (1 + Inflation_Adjustment) × Interest_Rate_Adjustment`
+   - Apply economic adjustments: `Adjusted_Premium = Total_Premium × (1 + Inflation_Adjustment) × Interest_Rate_Adjustment`
+   - Apply longevity adjustments (policy-type-specific)
+   - Apply GDP growth impact
    - Aggregate across demographics: Weighted average by segment size
 
 4. **Scenario Analysis**
@@ -125,8 +138,9 @@ Build an AI-powered dashboard that forecasts average life insurance premiums ove
    - Real-time recalculation
 
 5. **Demographic Filters**
-   - Filter by age group, gender, country, policy type
+   - Filter by age group, gender, group, policy type, smoking status, and sum insured
    - Update forecasts based on selected filters
+   - Sum insured filter: Select specific coverage amount or aggregate across all
 
 6. **Insights Panel**
    - AI-generated insights using Groq API
@@ -142,15 +156,17 @@ Build an AI-powered dashboard that forecasts average life insurance premiums ove
    - Historical trends (past 10-20 years)
 
 2. **Base Premiums**
-   - Starting premiums by age, gender, policy type, country
+   - Premium per ₹1 lakh sum insured by age, gender, policy type, smoking status, group, country
    - Can be synthetic/representative data
+   - Includes smoking status impact (2.5-3x multiplier for smokers)
 
 3. **Economic Data**
    - Historical inflation, interest rates, GDP growth
    - Scenario assumptions for future
 
 4. **Demographic Distribution**
-   - Current distribution of policyholders by segment
+   - Current distribution of policyholders by segment (age, gender, group, policy type, smoking status)
+   - Sum insured distribution (coverage amounts: ₹10L, ₹25L, ₹50L, ₹1Cr, ₹2Cr)
    - Projected changes in distribution (optional)
 
 ### 6. Implementation Approach
