@@ -9,54 +9,58 @@ Create the most comprehensive, accurate, and user-friendly AI-powered life insur
 
 ### ✅ Strengths
 - Comprehensive data integration (mortality, economic, demographic)
-- Accurate actuarial calculations
+- Accurate actuarial calculations (premium per unit × sum insured)
 - Multiple scenario analysis
 - Interactive visualizations
-- Chat-based interface
-- Comprehensive data tables
+- Chat-based interface (with natural language parsing)
+- Comprehensive data tables (downloadable CSV)
+- Sum Insured feature (premium per ₹1 lakh, configurable coverage)
+- Smoking Status filter (affects mortality and premiums)
+- AI Insights with filter context
+- Auto-generation of data files (Streamlit Cloud ready)
 
 ### 🔍 Areas for Enhancement
-- AI insights need better structure and clarity
+- ✅ AI insights structure improved (with key metrics and filter context)
 - Missing confidence intervals/uncertainty quantification
 - Limited demographic trend analysis
 - No sensitivity analysis
-- Missing export capabilities for reports
+- Missing export capabilities for reports (PDF, Excel)
 - No historical comparison/validation
 
 ---
 
-## 🚀 Phase 1: Enhanced AI Insights (Priority: HIGH)
+## 🚀 Phase 1: Enhanced AI Insights (Priority: HIGH) - ✅ PARTIALLY COMPLETE
 
-### 1.1 Structured Insights with Metrics
+### 1.1 Structured Insights with Metrics ✅ COMPLETE
 **Goal**: Make insights more understandable and actionable
 
 **Features**:
-- **Key Metrics Dashboard**: Visual cards showing critical numbers
+- ✅ **Key Metrics Dashboard**: Visual cards showing critical numbers
   - Premium volatility index
   - Risk factor contribution percentages
-  - Confidence levels
-- **Structured Analysis**: 
-  - Executive Summary (1-2 sentences)
+  - Premium range and spread
+- ✅ **Structured Analysis**: 
+  - Executive Summary
   - Key Drivers (ranked by impact)
-  - Risk Assessment (High/Medium/Low)
+  - Risk Assessment
   - Action Items (prioritized)
-- **Visual Insights**: 
-  - Driver impact charts
-  - Risk heatmaps
-  - Trend indicators
+- ⏳ **Visual Insights**: 
+  - Driver impact charts (pending)
+  - Risk heatmaps (pending)
+  - Trend indicators (pending)
 
-### 1.2 Enhanced Prompting Strategy
+### 1.2 Enhanced Prompting Strategy ✅ COMPLETE
 **Improvements**:
-- Use structured output (JSON) for consistent formatting
-- Include specific metrics in prompts
-- Add context about actuarial principles
-- Request bullet points and numbered lists
-- Ask for specific percentages and comparisons
+- ✅ Include specific metrics in prompts
+- ✅ Add context about actuarial principles
+- ✅ Request bullet points and numbered lists
+- ✅ Ask for specific percentages and comparisons
+- ✅ Include filter context (smoking status, sum insured, etc.)
 
-### 1.3 Multi-Level Insights
-- **Executive Level**: High-level summary (1 paragraph)
-- **Analyst Level**: Detailed analysis with metrics
-- **Technical Level**: Deep dive into calculations
+### 1.3 Multi-Level Insights ⏳ PENDING
+- ⏳ **Executive Level**: High-level summary (1 paragraph)
+- ✅ **Analyst Level**: Detailed analysis with metrics
+- ⏳ **Technical Level**: Deep dive into calculations
 
 ---
 

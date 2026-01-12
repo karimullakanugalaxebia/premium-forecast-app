@@ -165,6 +165,35 @@ The premium calculation now follows actuarial best practices:
 5. **GDP**: Economic stability correlation
 6. **Demographics**: Weighted averages by policy distribution
 
+## 🆕 Recent Enhancements
+
+### Sum Insured Feature
+- ✅ Premium calculation now uses "premium per ₹1 lakh sum insured"
+- ✅ Total premium = Premium per Unit × (Sum Insured / 100000)
+- ✅ Sum insured selector in sidebar (₹10L, ₹25L, ₹50L, ₹1Cr, ₹2Cr, or All)
+- ✅ Premiums are now actuarially interpretable and comparable
+
+### Smoking Status Feature
+- ✅ Added smoking status filter (Smoker/Non-Smoker)
+- ✅ Smokers have 2.5x higher mortality rates
+- ✅ Smokers pay 2.5-3x more in premiums
+- ✅ Life expectancy impact: Smokers have 8-12 years lower life expectancy
+
+### Chat Interface Enhancements
+- ✅ Now supports sum_insured and smoking_status parsing
+- ✅ Natural language queries can specify coverage amounts and smoking status
+- ✅ Example: "forecast for males age 30 years with sum insured 1cr, policy type whole life with non smoker"
+
+### AI Insights Enhancements
+- ✅ All insights now include filter context (smoking status, sum insured, etc.)
+- ✅ Premiums in insights show sum insured context
+- ✅ Recommendations tailored to selected filters
+
+### Auto-Generation of Data
+- ✅ Data files are automatically generated on first app run
+- ✅ No manual setup required for Streamlit Cloud deployment
+- ✅ Works seamlessly in production environments
+
 ## 🚀 Ready for Production
 
 The implementation is now:
@@ -172,6 +201,8 @@ The implementation is now:
 - ✅ Mathematically correct
 - ✅ Visually comprehensive
 - ✅ Complete per requirements
+- ✅ Includes sum insured and smoking status
+- ✅ Auto-generates data on first run
 - ✅ Ready for real-world application
 
 ---
